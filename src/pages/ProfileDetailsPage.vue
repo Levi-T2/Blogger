@@ -12,6 +12,10 @@
                 </div>
             </div>
         </section>
+        <section v-for="blog in blogs" :key="blog.id"
+            class="row align-items-center justify-content-center shadow blog-card m-3">
+            <BlogCard :blog="blog"></BlogCard>
+        </section>
     </div>
 </template>
 
@@ -22,29 +26,41 @@ import Pop from '../utils/Pop';
 import { useRoute } from 'vue-router';
 import { profileService } from '../services/ProfileService';
 import { AppState } from '../AppState';
+import BlogCard from '../components/BlogCard.vue';
+
 
 
 export default {
     setup() {
-
-        onMounted(() => [
-            getProfile()
-        ]);
-
+        onMounted(() => {
+            getProfile();
+            getBlogsByProfileId();
+        });
         const route = useRoute();
-
         async function getProfile() {
             try {
                 const profileId = route.params.profileId;
-                await profileService.getProfile(profileId)
-            } catch (error) {
-                Pop.error(error)
+                await profileService.getProfile(profileId);
+            }
+            catch (error) {
+                Pop.error(error);
+            }
+        }
+        async function getBlogsByProfileId() {
+            try {
+                const profileId = route.params.profileId;
+                await profileService.getBlogsByProfileId(profileId);
+            }
+            catch (error) {
+                Pop.error(error);
             }
         }
         return {
-            profile: computed(() => AppState.profile)
-        }
-    }
+            profile: computed(() => AppState.profile),
+            blogs: computed(() => AppState.blogs)
+        };
+    },
+    components: { BlogCard }
 };
 </script>
 

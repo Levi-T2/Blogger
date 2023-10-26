@@ -28,6 +28,11 @@ export default {
   --main-height: calc(100vh - 32px - 64px);
 }
 
+.blog-card {
+  border-radius: 8px;
+  background-color: aliceblue;
+  border: 2px solid black;
+}
 
 footer {
   display: grid;

@@ -5,6 +5,7 @@
                 <div>
                     <p>{{ blog.title }}</p>
                     <p>{{ blog.body }}</p>
+                    <p>{{ blog.createdAt }}</p>
                 </div>
                 <div>
                     <img :src="blog.imgUrl" alt="blog image">

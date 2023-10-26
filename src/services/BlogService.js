@@ -18,6 +18,13 @@ class BlogService {
         AppState.activeBlog = new Blog(res.data)
         logger.log(AppState.activeBlog)
     }
+
+    async createBlog(blogData) {
+        const res = await api.post(`api/blogs`, blogData)
+        logger.log(res.data)
+        const newBlog = new Blog(res.data)
+        AppState.blogs.push(newBlog)
+    }
 }
 
 export const blogService = new BlogService()

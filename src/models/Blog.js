@@ -6,7 +6,7 @@ export class Blog {
         this.title = data.title
         this.published = data.published
         this.imgUrl = data.imgUrl
-        this.createdAt = data.createdAt
+        this.createdAt = new Date(data.createdAt).toLocaleDateString()
         this.updatedAt = data.updatedAt
         this.creatorId = data.creatorId
         this.creator = data.creator
